@@ -1,0 +1,46 @@
+body {
+    background-color: #eaeee5;
+    color: antiquewhite;
+  }
+/*   
+  .form-control {
+    background-color: rgb(177, 168, 168);
+  } */
+  
+  .jumbo-color {
+    background-color: rgb(83, 81, 81);
+  }
+
+  .truncate-text {
+    max-height: 3.2em; /* Set to two lines, plus a little extra for safety */
+    line-height: 1.6em; /* The line height of the text, typically half of the container's max-height */
+    overflow: hidden;
+  }
+  
+.create-margin{
+  margin-top:7rem!important
+}
+.mt-7{margin-top:5rem!important}
+.mt-6{margin-top:4rem!important}
+
+/* profile  */
+.form-control:focus {
+  box-shadow: none;
+  border-color: #BA68C8
+}
+
+.back:hover {
+  color: #3a2773;
+  cursor: pointer
+}
+
+.labels {
+  font-size: 11px
+}
+
+.add-experience:hover {
+  background: #BA68C8;
+  color: #fff;
+  cursor: pointer;
+  border: solid 1px #BA68C8
+}

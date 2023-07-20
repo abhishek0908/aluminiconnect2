@@ -1,0 +1,74 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %} Profile {% endblock title%} 
+{% block banner %}
+{% if messages %} 
+  {% for message in messages %}
+  <div class="container mt-5 ">
+   <h3 class="alert alert-{{ message.tags }}">{{ message }}</h3>
+</div>
+   {% endfor %}
+{% endif %}
+<div class="container rounded text-dark mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                <span class="font-weight-bold">{{ user.name }}</span>
+                <span class="text-black-50">{{ user.email }}</span>
+                <span> </span>
+            </div>
+        </div>
+        <div class="col-md-9 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Hi {{ user.name }} !</h4>
+                </div>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="row mt-3">
+                        <div class="form-group col-md-12 mb-3">
+                            <label class="labels" for="{{ form.name.id_for_label }}">Enter Name</label>
+                            <input type="text" class="form-control" name="{{ form.name.html_name }}" id="{{ form.name.auto_id }}" value="{{ form.name.value }}" required>
+                        </div>
+                        <div class="form-group col-md-12 mb-3">
+                            <label class="labels" for="{{ form.phone_number.id_for_label }}">Enter Mobile Number</label>
+                            <input type="text" class="form-control" name="{{ form.phone_number.html_name }}" id="{{ form.phone_number.auto_id }}" value="{{ form.phone_number.value }}" required>
+                        </div>
+                        <div class="form-group col-md-12 mb-3">
+                            <label class="labels" for="{{ form.email.id_for_label }}">Enter Email</label>
+                            <input type="email" class="form-control" name="{{ form.email.html_name }}" id="{{ form.email.auto_id }}" value="{{ form.email.value }}" required>
+                        </div>
+                        <div class="form-group col-md-12 mb-3">
+                            <label class="labels" for="{{ form.college_reg_no.id_for_label }}">Enter College Registration Number</label>
+                            <input type="number" class="form-control" name="{{ form.college_reg_no.html_name }}" id="{{ form.college_reg_no.auto_id }}" value="{{ form.college_reg_no.value }}" required>
+                        </div>
+                        <div class="form-group col-md-12 mb-3">
+                            <label class="labels" for="{{ form.passout_year.id_for_label }}">Enter Passout Year</label>
+                            <input type="number" class="form-control" name="{{ form.passout_year.html_name }}" id="{{ form.passout_year.auto_id }}" value="{{ form.passout_year.value }}" required>
+                        </div>
+                        <div class="form-group col-md-12 mb-3">
+                            <label class="labels" for="{{ form.current_company.id_for_label }}">Enter Current Company</label>
+                            <input type="text" class="form-control" name="{{ form.current_company.html_name }}" id="{{ form.current_company.auto_id }}" value="{{ form.current_company.value }}" required>
+                        </div>
+                        <div class="form-group col-md-12 mb-3">
+                            <label class="labels" for="{{ form.position_in_company.id_for_label }}">Enter Position in Company</label>
+                            <input type="text" class="form-control" name="{{ form.position_in_company.html_name }}" id="{{ form.position_in_company.auto_id }}" value="{{ form.position_in_company.value }}" required>
+                        </div>
+                        <div class="form-group col-md-12 mb-3">
+                            <label class="labels" for="{{ form.college_branch.id_for_label }}">Enter College Branch</label>
+                            <input type="text" class="form-control" name="{{ form.college_branch.html_name }}" id="{{ form.college_branch.auto_id }}" value="{{ form.college_branch.value }}" required>
+                        </div>
+                        <div class="form-group col-md-12 mb-3">
+                            <label class="labels" for="{{ form.linkedin.id_for_label }}">Enter Your LinkedIn</label>
+                            <input type="text" class="form-control" name="{{ form.linkedin.html_name }}" id="{{ form.linkedin.auto_id }}" value="{{ form.linkedin.value }}" required>
+                        </div>
+                    </div>
+                    <input type="submit" value="Submit" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock banner %}

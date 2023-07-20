@@ -1,0 +1,32 @@
+{% extends 'app/base.html' %} 
+{% load static %} 
+{% block title %} Job {{info.company}} {% endblock title %} 
+
+{% block banner %}
+<section class="mt-6">
+  <div class="container text-light mb-5">
+  <h3 class="bg-primary text-light text-center p-3">{{info.company}} Interview Experince</h3>
+  </div>
+<div class="container bg-dark text-light">
+  <div class="col-sm-12">
+    <div class="mb-5">
+      <div class="container p-3">
+        <h5 class="fw-bold font-weight-bold">Company : {{info.company}}</h5>
+        <h5 class="fw-bold font-weight-bold">Job Role : {{info.title}}</h5>
+        <h5 class="fw-bold font-weight-bold" >Location : {{info.location}}</h5>
+        <h5 class="fw-bold font-weight-bold">Prerequisits for Apply</h5>
+        <p>
+         {{info.role}}
+        </p>
+       
+    <div class="">
+        <a class="btn btn-primary" href="{{info.website_link}}">Apply Now</a>
+
+       
+    </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+{% endblock banner %}

@@ -1,0 +1,47 @@
+{% extends 'app/base.html' %}
+{% block title %} Login {% endblock %} 
+{% load socialaccount %}
+{% load static %}
+{% block banner %}
+<div class="container text-dark">
+    <div class="row my-3">
+        <div class="col-sm-6 offset-sm-3">
+            <h3 class="mt-5">Login</h3>
+            <hr>
+            <form action="" method="post" novalidate class="shadow p-5">
+                
+                {% if messages %}
+                {% for message in messages %}
+                <p {% if message.tags %} class="alert alert-{{message.tags}} mb-5" {% endif %}>{{message}}</p>
+                {% endfor %}
+                {% endif %}
+                {% csrf_token %}
+                {% for fm in forms %}
+                <div class="form-group">
+                    {{fm.label_tag}}{{fm}}<small class="text-danger">{{fm.errors|striptags}}</small><br>
+                </div>
+                {% endfor %}
+                <small><a href="{% url 'password_reset' %}">Forget Password or Username ?</a></small><br>
+                <input type="submit" class="btn btn-primary mt-4 " value="Login"><br>
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-auto">
+                      <a href="{% provider_login_url 'google' %}?next=/profile/">
+                        <img src="{% static 'app/img/googleicon.svg' %}" alt="google">
+                      </a>
+                    </div>
+                  </div>
+                <div class="text-center text-primary fw-bold"><small>New to AlmaBase ?<a
+                            href="{% url 'registration' %}" class="text-danger"> Create Account</a></small></div>
+                    
+                {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                <p class="alert alert-danger my-3">{{error}}</p>
+                {% endfor %}
+                {% endif %}
+
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock banner %}

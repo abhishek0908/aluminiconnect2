@@ -1,0 +1,123 @@
+{% extends 'app/base.html' %}
+{% block title %} Alumini {% endblock title %} 
+{% load static %}
+
+{% block banner %}
+<section>
+  <div class="container text-light mt-6">
+    <h3 class="bg-primary text-light text-center p-3">College Student & Alumini Information </h3>
+  </div>
+  
+  <div class="container d-md-flex justify-content-start align-items-center mb-3">
+    <form action="{% url 'search_people' %}" method="" class="d-flex mb-3 mb-md-0 w-100">
+        <input class="form-control me-2" type="text" placeholder="Search By Company, People or Branch" aria-label="Search" name="query">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+</div>
+
+
+  <div class="container">
+    <table class="table align-middle mb-0 table-dark">
+      <thead class="bg-light">
+        <tr>
+          <th>Name</th>
+          <th>Company</th>
+          <th>College Branch</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for info in user_info %}
+        <tr>
+          <td>
+            <div class="d-flex align-items-center">
+              <img src="{{info.profile_image}}" alt="" style="width: 45px; height: 45px" class="rounded-circle" />
+              <div class="ms-3">
+                <p class="fw-bold mb-1">{{ info.name }}</p>
+                <p class="mb-0">{{ info.position_in_company }}</p>
+              </div>
+            </div>
+          </td>
+          <td>
+            <p class="fw-normal mb-1">{{ info.current_company }}</p>
+          </td>
+          <td>
+            {{ info.college_branch }}
+          </td>
+          <td>
+            <button type="button" class="btn text-light bg-primary btn-sm btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal{{ info.id }}" data-info="{{ info.id }}">
+              View
+            </button>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+
+
+  <div class="container mt-3 d-flex justify-content-center">
+    <ul class="pagination">
+      {% if user_info.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page=1">&laquo; First</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="?page={{ user_info.previous_page_number }}">Previous</a>
+      </li>
+      {% endif %}
+
+      {% for i in user_info.paginator.page_range %}
+      {% if user_info.number == i %}
+      <li class="page-item active">
+        <span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
+      </li>
+      {% else %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+      </li>
+      {% endif %}
+      {% endfor %}
+
+      {% if user_info.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ user_info.next_page_number }}">Next</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="?page={{ user_info.paginator.num_pages }}">Last &raquo;</a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+</section>
+
+{% for info in user_info %}
+<div class="modal fade" id="exampleModal{{ info.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-light">
+        <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">{{ info.name }}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body bg-dark text-light">
+        <h5>Name: {{ info.name }}</h5>
+        <h5>College Branch: {{ info.college_branch }}</h5>
+        <h5>Passout: {{ info.passout_year }}</h5>
+        <h5>Company: {{ info.current_company }}</h5>
+        <h5>Position: {{ info.position_in_company }}</h5>
+        <h5>Email: {{ info.email }}</h5>
+        <h5>Contact Number: {{ info.phone_number }}</h5>
+        <a href="{{ info.linkedin }}" target="_blank" class="btn btn-primary mt-5 text-light">
+          <img src="{% static 'app/img/linkedin.svg' %}" alt="">
+        </a>
+        
+      </div>
+      <div class="modal-footer bg-primary text-light">
+        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endblock banner %}

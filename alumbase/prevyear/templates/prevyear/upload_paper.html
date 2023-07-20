@@ -1,0 +1,32 @@
+{% extends 'app/base.html' %}
+{% block title %} Upload PDF{% endblock title %} 
+{% block banner %}
+<div class="container mt-4 text-dark p-5">
+    <div class="card border-dark">
+        <div class="card-body">
+            <h4 class="card-title text-primary">Subject Name: {{ subject_info.subject_name }}</h4>
+            <h4 class="card-title text-primary">Subject Code: {{ subject_info.code }}</h4>
+        </div>
+    </div>
+</div>
+<div class="container mt-5 text-dark mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border-primary">
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        {{ forms.as_p }}
+
+                        <div class="text-center mt-3">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

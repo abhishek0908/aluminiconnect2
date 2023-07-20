@@ -1,0 +1,35 @@
+{% extends 'app/base.html' %} 
+{% load static %} 
+{% block title %} Interview {{info.company}} {% endblock title %} 
+{% block banner %}
+<section class="mt-6">
+<div class="container text-light">
+<h3 class="bg-primary text-light text-center p-3">{{info.company}} Interview Experince</h3>
+</div>
+<div class="container bg-dark text-light">
+  <div class="col-sm-12 mt-5">
+    <div class="m-3">
+      <div class="container p-3">
+        <h3 class="fw-bold font-weight-bold">Role : {{info.role}}</h3>
+        <h4 class="fw-bold font-weight-bold">Interview Experience : </h4>
+        <p>
+         {{info.experience}}
+        </p>
+        <div class="">
+        <h4 class="fw-bold font-weight-bold">Your Way Of Preparation</h4>
+        <p>{{info.way_of_preparation}}</p>
+    </div>
+    <div class="">
+        <h4 class="fw-bold font-weight-bold">Overall Expereince and Suggestion</h4>
+        <p>{{info.Suggestion}}</p>
+    </div>
+    {% if info.user == request.user %}
+    <a href="{% url 'update_experience' info.id %}" class="btn btn-danger">Update</a>
+    {% endif %}
+    <a href="{% url 'allinterview' %}" class="btn btn-primary"> Back to More Expereince</a>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+{% endblock banner %}

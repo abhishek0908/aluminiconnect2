@@ -1,0 +1,96 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlmaBase | {% block title %} {% endblock title %} </title>
+    <link rel="stylesheet" href="{% static 'app/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/beauty.css' %}">
+  </head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+        <div class="container">
+          <a href="{% url 'home' %}" class="navbar-brand">AlmaBase</a>
+          
+          
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navmenu"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+          <div class="collapse navbar-collapse" id="navmenu">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a href="{% url 'home' %}" class="nav-link">Home </a>
+              </li>
+              {% if request.user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a
+                      href="#"
+                      class="nav-link dropdown-toggle"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                      >{{request.user.first_name}}
+                    </a>
+                    
+                    <ul class="dropdown-menu bg-dark">
+                      <li><a class="nav-link" href="{% url 'profile' %}">Profile</a></li>
+                      <li><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
+                  </li>
+                  {% endif %}
+                 
+                  <li class="nav-item">
+                    <a href="{% url 'allinterview' %}" class="nav-link">Expereince </a>
+                  </li>
+              <li class="nav-item">
+                <a href="{% url 'all_jobs' %}" class="nav-link">News Feed </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'aluminiinfo' %}" class="nav-link">Connect People </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'prevyear:home' %}" class="nav-link">Academics </a>
+              </li>
+              
+              {% if not request.user.is_authenticated %}
+              <li class="nav-item">
+                <a href="{% url 'login' %}" class="nav-link">Sign_in </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'registration' %}" class="nav-link">Sign_up </a>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav>
+      
+      
+    {% block banner %} {% endblock banner %}
+    {% block newsfeed %} {% endblock newsfeed %}
+    {% block interviewexp %} {% endblock interviewexp %}
+
+       <!-- Footer -->
+       <footer class="p-4 bg-dark text-white text-center position-relative">
+        <div class="container">
+          <p class="lead">Copyright &copy; 2023 AlmaBase</p>
+  
+          <a href="#" class="position-absolute bottom-0 end-0 p-5">
+            <i class="bi bi-arrow-up-circle h1"></i>
+          </a>
+        </div>
+      </footer>
+    <script src="{% static 'app/js/bootstrap.min.js' %}"></script>
+   <script src="{% static 'app/js/popper.js' %}"></script>
+   <script src="{% static 'app/js/jquery.js' %}"></script>
+   <script src="{% static 'app/js/general.js' %}"></script>
+  
+</body>
+</html>

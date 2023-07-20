@@ -1,0 +1,15 @@
+{% extends 'app/base.html' %}
+{% block title %} Password Reset Complete {% endblock title %} 
+
+{% block banner %}
+{% if message %}
+<div class="row-3 create-margin mb-3">
+    <div class="col-sm-6 offset-sm-3">
+<div class="alert alert-warning alert-dismissible fade show create-margin" role="alert">
+    <strong>Alert!</strong> {{message}} click here to  <a href="{% url 'login' %}">Login</a>
+  </div>
+</div>
+</div>
+{% endif %}
+
+{% endblock banner %}

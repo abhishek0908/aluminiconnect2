@@ -1,0 +1,45 @@
+{% extends 'app/base.html' %}
+{% block title %} Exam Paper{% endblock title %} 
+{% block banner %}
+<section class="p-5">
+  <div class="container text-light my-3">
+    <h3 class="bg-primary text-light text-center p-3">Subject Information</h3>
+  </div>
+  
+  <div class="container d-md-flex justify-content-between align-items-center mb-3">
+    <form action="{% url 'prevyear:search_subject' %}" method="" class="d-flex mb-3 mb-md-0">
+        <input class="form-control me-2" type="text" placeholder="Search By Subject or By Code" aria-label="Search" name="query">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+    {% if request.user.is_staff %}
+    <a class="btn btn-danger" href="{% url 'prevyear:add_subject' %}">Create Subject &plus;</a>
+    {% endif %}
+  </div>
+    <div class="container mt-5">
+      <div class="row text-center g-4">
+        {% for fm in form %}
+        <div class="col-md-4">
+          <div class="card bg-dark text-light">
+            <div class="card-body text-center">
+              <div class="h1 mb-3">
+                <i class="bi bi-laptop"></i>
+              </div>
+              <div class="card-title mb-3">
+              <!-- <h5>{{job.company}}</h5> -->
+              <p class="card-text">Subject Code: {{fm.code}}</p>
+              <p class="card-text">{{fm.subject_name}}</p>
+              <p class="card-text">{{fm.user}}</p>
+              <!-- <p class="card-text">Posted at : {{job.posted_date}}</p> -->
+            </div>
+            <a class="bg-danger btn mb-3 text-light" href="{% url 'prevyear:upload_paper' fm.code %}">Add Papers</a>
+              <a class="bg-primary btn mb-3 text-light" href="{% url 'prevyear:all_papers' fm.code %}">View Papers</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+    
+
+{% endblock %}

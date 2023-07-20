@@ -1,0 +1,24 @@
+{% extends 'app/base.html' %}
+{% block title %} Add Subject {% endblock title %} 
+{% block banner %}
+<div class="container mt-5 text-dark mb-5 p-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border-primary">
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        {{ forms.as_p }}
+
+                        <div class="text-center mt-3">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
